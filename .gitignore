@@ -1,3 +1,12 @@
+# data files.
+*.fit
+*.fits
+*.npy
+*.npz
+*.pk
+*.json
+*.csv
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

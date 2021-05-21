@@ -10,8 +10,8 @@ if __name__ == '__main__':
 
     # parse csv files
     rows, header = list(), None
-    # for file_i in glob.glob('./**/Part-??.csv'):
-    for file_i in glob.glob('./Part-??.csv'):
+    for file_i in glob.glob('./**/Part-??.csv'):
+    # for file_i in glob.glob('./Part-??.csv'):
         with open(file_i, 'r') as f: rows_i = f.readlines()
         if not header: header = rows_i[0].strip()[1:-1].split('","')
         rows_i = [w.strip() for w in rows_i if '"ID","Name"' not in w]
@@ -32,9 +32,9 @@ if __name__ == '__main__':
             encoding='ascii', errors='backslashreplace').decode().strip()
 
     sexagesimal = [1, 1. / 60., 1. / 3600.]
-    dms_to_deg  = lambda x: int('-' in x) * np.dot(np.abs( \
+    dms_to_deg  = lambda x: (-1. if ('-' in x) else 1.) * np.dot(np.abs( \
             [float(w) for w in x.split(':')]), sexagesimal)
-    hms_to_deg  = lambda x: 15. * dms_to_deg(x)
+    hms_to_deg  = lambda x: np.abs(15. * dms_to_deg(x))
 
     cols = [
         ('id',                      'i4',   as_int),
